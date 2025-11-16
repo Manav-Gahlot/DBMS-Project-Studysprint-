@@ -1,0 +1,30 @@
+# StudySprint .htaccess
+# Apache configuration for better URL handling
+
+# Enable rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /studysprint/
+    
+    # Redirect to public folder if accessing root
+    RewriteCond %{REQUEST_URI} ^/studysprint/?$
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect config files
+<FilesMatch "^(config\.php|\.htaccess)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Enable error pages (optional)
+# ErrorDocument 404 /studysprint/public/404.php
+# ErrorDocument 500 /studysprint/public/500.php
+
+
